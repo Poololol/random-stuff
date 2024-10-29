@@ -1,11 +1,9 @@
 from moviepy.editor import *
-import os
 clips = []
-currentSeason = 'Fall 2022'
+currentSeason = 'Winter 2024'
 info = [('17.567', '4758', '1:24:13')]
-os.chdir(f'{currentSeason}')
 for i in range(1):
-    video = VideoFileClip(f'Poololol53_{currentSeason} - {i+1 if i>9 else f"0{i+1}"}_PersonalBest_TimeAttack.Replay.gbx')
+    video = VideoFileClip(f'Video{i+1}.webm')
     mapNum = i+1 if i>9 else f'0{i+1}'
     text = TextClip(method='caption', size=(999, 200), align='West', txt=f'{currentSeason} - {mapNum}\nPB: {info[i][0]}\nTop {info[i][1]} World\nTime Spent: {info[i][2]}', color='white')
     clip = CompositeVideoClip((video, text))

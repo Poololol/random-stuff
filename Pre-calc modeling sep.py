@@ -14,8 +14,8 @@ def move_figure(f:matplotlib.figure.Figure, x, y):
 screenSize = (1536, 1024-48)
 ebikeSalesMult = 1000
 
-f = plt.figure('Q1')
-plt.subplot(221)
+f = plt.figure('Quadratic')
+#plt.subplot(221)
 x = np.arange(2017,2030, .1)
 y = ((20666.6666699*(x**2))-(83348833.3464*x)+(8.4036942513*(10**10)))/ebikeSalesMult
 x2 = [2018,2019,2021,2022]
@@ -29,8 +29,10 @@ plt.plot(x, y, 'g-', x2, y2, 'bo', 2020, 416000/ebikeSalesMult, 'ko', dx, dy, 'g
 plt.legend(['Quadratic Model', 'Data', '2020 Data (Not Used)', 'Quadratic Predicions'])
 plt.annotate(f'({dx[0]}, {round(dy[0],2)})', [dx[0]-3.3, dy[0]-.2])
 plt.annotate(f'({dx[1]}, {round(dy[1],2)})', [dx[1]-3.3, dy[1]-.4])
+#move_figure(f, 0, 0)
 
-plt.subplot(222)
+f= plt.figure('Exponential')
+#plt.subplot(222)
 x = np.arange(2017,2030, .1)
 ye = (0.0464445*(e**(0.253331*(x-1955.7)))+21826.2)/ebikeSalesMult
 x2 = [2018,2019,2021,2022]
@@ -45,7 +47,8 @@ plt.legend(['Exponential Model', 'Data', '2020 Data (Not Used)', 'Exponential Pr
 plt.annotate(f'({dx[0]}, {round(dye[0],2)})', [dx[0]-3.3, dye[0]+.2])
 plt.annotate(f'({dx[1]}, {round(dye[1],2)})', [dx[1]-3.3, dye[1]+.2])
 
-plt.subplot(223)
+f = plt.figure('Average')
+#plt.subplot(223)
 x = np.arange(2017,2030, .1)
 x2 = [2018,2019,2021,2022]
 y2 = np.array([369000, 423000, 750000, 928000])/ebikeSalesMult
@@ -60,7 +63,8 @@ plt.legend(['Average Model', 'Data', '2020 Data (Not Used)', 'Average Prediction
 plt.annotate(f'({dx[0]}, {round(dya[0],2)})', [dx[0]+.2, dya[0]-.2])
 plt.annotate(f'({dx[1]}, {round(dya[1],2)})', [dx[1]-.3, dya[1]-.4])
 
-plt.subplot(224)
+f = plt.figure('Quadratic + Exponential + Average')
+#plt.subplot(224)
 x = np.arange(2017,2030, .1)
 y = ((20666.66*(x**2))-(83348833.35*x)+(8.4036942513*(10**10)))/ebikeSalesMult
 ye = (0.0464445*(e**(0.253331*(x-1955.7)))+21826.2)/ebikeSalesMult
@@ -79,11 +83,11 @@ plt.annotate(f'({dx[0]}, {round(dy[0],2)})', [dx[0]+.2, dy[0]-.2])
 plt.annotate(f'({dx[1]}, {round(dy[1],2)})', [dx[1]-.3, dy[1]-.4])
 plt.annotate(f'({dx[0]}, {round(dye[0],2)})', [dx[0]-2, dye[0]+.1])
 plt.annotate(f'({dx[1]}, {round(dye[1],2)})', [dx[1]-2, dye[1]+.1])
-f.set_layout_engine(layout='tight')
+#move_figure(f, 0, 0)
 
 
-f = plt.figure('Q2')
-plt.subplot(131)
+f = plt.figure('Battery Cost')
+#plt.subplot(222)
 x = np.arange(1994, 2030, .1)
 y = (0.000152487*(e**(-0.17247*(x-2092.63))))+153.326
 plt.title('Battery Cost vs. Time')
@@ -91,8 +95,10 @@ plt.xlabel('Year')
 plt.ylabel('Cost per kWh of Capacity ($/kWh)')
 plt.plot(x, y, 'g-', [1995,1997,1999,2003,2005,2010,2015], [3200,2500,1800,830,630,370,350], 'bo')
 plt.legend(['Model', 'Data'])
+#move_figure(f, int(screenSize[0]/2), 0)
 
-plt.subplot(132)
+f = plt.figure('Gas Prices Full')
+#plt.subplot(223)
 x = np.arange(2015, 2030, .1)
 y = .18*x-360.685
 x2 = [2016, 2017, 2018, 2019, 2021, 2023]
@@ -106,8 +112,10 @@ plt.xlabel('Year')
 plt.ylabel('Gas Prices ($/gal)')
 plt.plot(x, y, 'g-', x2, y2, 'bo', x4, y4, 'ko', x3, y3, 'ro')
 plt.legend(['Model', 'Data', 'Outlier Data (Not Used)', 'Data before 2016 (Not Used)'])
+#move_figure(f, 0, int(screenSize[1]/2))
 
-plt.subplot(133)
+f = plt.figure('Gas Prices')
+#plt.subplot(224)
 x = np.arange(2015, 2030, .1)
 y = .18*x-360.685
 x2 = [2016, 2017, 2018, 2019, 2021, 2023]
@@ -119,36 +127,35 @@ plt.xlabel('Year')
 plt.ylabel('Gas Prices ($/gal)')
 plt.plot(x, y, 'g-', x2, y2, 'bo', x4, y4, 'ko')
 plt.legend(['Model', 'Data ', 'Outlier Data (Not Used)'])
-f.set_layout_engine(layout='tight')
+#move_figure(f, int(screenSize[0]/2), int(screenSize[1]/2))
 
 
-f = plt.figure('Q3')
-plt.subplot(121)
+f = plt.figure('Carbon Emissions Multi')
 x = np.arange(2016, 2030, .1)
 y = ((6.35*(10**9))*(e**(0.318598*(x-2040.78)))-(2.702*(10**6)))/100
 x2 = [2018, 2019, 2020, 2021, 2022]
 scale = 10**6/100
 y2 = [1.6974*scale, 3.6432*scale, 5.5568*scale, 9.0068*scale, 13.2756*scale]
-plt.title('Carbon not Emitted vs. Time')
+plt.title('Reduction in Carbon Emissions vs. Time')
 plt.xlabel('Year')
 plt.ylabel('CO2 (Millions of metric tons)')
 plt.plot(x, y, 'g-', x, y*.5, 'c-', x2, y2, 'bo', x, y*.8, 'c-', x, y*.25, 'c-')
 plt.legend(['Model', 'Percent', 'Data'])
-plt.annotate('50%', (x[100], y[100]*.5+(.5*scale)))
-plt.annotate('80%', (x[100], y[100]*.8+(.5*scale)))
-plt.annotate('25%', (x[100], y[100]*.25+(.5*scale)))
+plt.annotate('50%', (x[100], y[100]*.5+.1*scale))
+plt.annotate('80%', (x[100], y[100]*.8+.1*scale))
+plt.annotate('25%', (x[100], y[100]*.25+.1*scale))
 
-plt.subplot(122)
+f = plt.figure('Carbon Emissions')
 x = np.arange(2016, 2030, .1)
 y = ((6.35*(10**9))*(e**(0.318598*(x-2040.78)))-(2.702*(10**6)))/100
 x2 = [2018, 2019, 2020, 2021, 2022]
 scale = 10**6/100
 y2 = [1.6974*scale, 3.6432*scale, 5.5568*scale, 9.0068*scale, 13.2756*scale]
-plt.title('Carbon not Emitted vs. Time')
+plt.title('Reduction in Carbon Emissions vs. Time')
 plt.xlabel('Year')
 plt.ylabel('CO2 (Millions of metric tons)')
 plt.plot(x, y, 'g-', x2, y2, 'bo')
 plt.legend(['Model', 'Data'])
-f.set_layout_engine(layout='tight')
 
+#f.set_layout_engine(layout='tight')
 plt.show()
